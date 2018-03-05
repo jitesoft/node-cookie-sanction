@@ -37,14 +37,14 @@ class CookieConsent {
 
       let element = document.querySelector(this.options.element);
       if (!element || element.length === 0) {
-        return reject('Failed to locate element to apply cookie consent code to.');
+        return reject(new Error('Failed to locate element to apply cookie consent code to.'));
       }
 
       let accept = element.querySelector(this.options.acceptButton);
       let decline = element.querySelector(this.options.rejectButton);
 
       if (!accept || accept.length === 0) {
-        return reject('Failed to locate the accept button.');
+        return reject(new Error('Failed to locate the accept button.'));
       }
 
       accept.addEventListener('click', () => {
@@ -55,14 +55,13 @@ class CookieConsent {
 
       if (decline && decline.length > 0) {
         decline.addEventListener('click', () => {
-          reject('User rejected cookie consent.');
+          reject(new Error('User rejected cookie consent.'));
         });
       }
 
       element.classList.remove(this.options.hiddenClass);
     });
   }
-
 }
 
 export default CookieConsent;

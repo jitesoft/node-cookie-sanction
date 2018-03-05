@@ -1,1 +1,2 @@
-let c = 6;
+// eslint-disable-next-line
+import CookieConsent from '../pure/CookieConsent';

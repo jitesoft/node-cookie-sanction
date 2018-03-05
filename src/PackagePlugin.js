@@ -1,5 +1,4 @@
 const fs = require('fs');
-
 const log = (msg) => {
   console.log(`[package.json compiler] ${msg}`)
 };
@@ -37,7 +36,7 @@ class PackagePlugin {
   async write() {
     log('Emitting package.json file.');
     return new Promise((resolve, reject) => {
-      fs.writeFile(this.output, JSON.stringify(this.base), null, (e) => {
+      fs.writeFile(this.output, JSON.stringify(this.base, null, 2), null, (e) => {
         if (e) {
           return reject(e);
         }

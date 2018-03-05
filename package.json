@@ -2,7 +2,7 @@
   "name": "cookie-consent",
   "version": "1.0.0",
   "description": "Cookie consent scripts and components.",
-  "main": "src/index.js",
+  "main": "index.js",
   "repository": "git@gitlab.com:jitesoft/open-source/javascript/cookie-consent.git",
   "author": {
     "name": "Johannes Tegnér",

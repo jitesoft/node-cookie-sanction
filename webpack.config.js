@@ -1,9 +1,13 @@
 const path = require('path');
 const PackagePlugin = require('./src/PackagePlugin');
-const pkg = require('./package');
+let pkg = require('./package');
 const dist = path.resolve(__dirname, 'dist');
 const mode = process.env.NODE_ENV || 'development';
 
+delete pkg.devDependencies;
+delete pkg.scripts;
+delete pkg.eslintConfig;
+delete pkg.semistandard;
 
 const js = {
   mode: mode,
@@ -14,7 +18,9 @@ const js = {
     path: dist + '/js'
   },
   plugins: [
-    new PackagePlugin(pkg, dist + '/js/package.json')
+    new PackagePlugin(pkg, dist + '/js/package.json', {
+      description: 'Pure JavaScript cookie consent code.'
+    })
   ]
 };
 
@@ -27,7 +33,10 @@ const vue = {
     path: dist + '/vue'
   },
   plugins: [
-    new PackagePlugin(pkg, dist + '/vue/package.json', {name: 'cookie-consent-vue'})
+    new PackagePlugin(pkg, dist + '/vue/package.json', {
+      name: 'cookie-consent-vue',
+      description: 'Vue component for easy implementation of cookie consent.'
+    })
   ]
 };
 
@@ -40,7 +49,10 @@ const react = {
     path: dist + '/react'
   },
   plugins: [
-    new PackagePlugin(pkg, dist + '/react/package.json', {name: 'cookie-consent-react'})
+    new PackagePlugin(pkg, dist + '/react/package.json', {
+      name: 'cookie-consent-react',
+      description: 'React component for easy implementation of cookie consent.'
+    })
   ]
 };
 

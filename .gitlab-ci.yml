@@ -1,0 +1,25 @@
+stages:
+  - test
+  - build
+
+test:
+  stage: test
+  variables:
+    NODE_ENV: 'development'
+  image: jitesoft/node-base:latest
+  before_script:
+    - npm install -g yarn
+  script:
+    - yarn install
+    - yarn test
+
+build:
+  stage: build
+  variables:
+    NODE_ENV: 'production'
+  image: jitesoft/node-base:latest
+  before_script:
+    - npm install -g yarn
+  script:
+    - yarn install
+    - yarn build

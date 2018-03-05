@@ -10,6 +10,9 @@ class PackagePlugin {
    * @param {object|string} replace
    */
   constructor (basePackage, outputFile, replace) {
+    this.plugin = {
+      name: 'package.json compiler'
+    };
     this.base = (basePackage instanceof String) ? JSON.parse(basePackage) : basePackage;
     this.replace = (replace instanceof String) ? JSON.parse(replace) : replace;
     this.output = outputFile;
@@ -49,8 +52,8 @@ class PackagePlugin {
    * @param compiler
    */
   apply (compiler) {
-    compiler.plugin('compile', this.build.bind(this));
-    compiler.plugin('emit', this.write.bind(this));
+    compiler.hooks.compile.tap(this.plugin, this.build.bind(this));
+    compiler.hooks.emit.tap(this.plugin, this.write.bind(this));
   }
 }
 

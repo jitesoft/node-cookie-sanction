@@ -1,9 +1,9 @@
-const path = require('path');
 const PackagePlugin = require('./src/PackagePlugin');
-let pkg = require('./package');
+const path = require('path');
 const dist = path.resolve(__dirname, 'dist');
 const mode = process.env.NODE_ENV || 'development';
 
+let pkg = require('./package');
 delete pkg.devDependencies;
 delete pkg.scripts;
 delete pkg.eslintConfig;

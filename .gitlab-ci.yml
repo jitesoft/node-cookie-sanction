@@ -11,7 +11,7 @@ test:
   before_script:
     - npm install -g yarn
   script:
-    - yarn install --dev
+    - yarn install
     - yarn test
 
 build:
@@ -22,7 +22,7 @@ build:
   before_script:
     - npm install -g yarn
   script:
-    - yarn install --production=false
+    - yarn install
     - yarn build
     - cp package.template.json dist/package.json
     - sed -i 's/{VERSION}/1.0.0/' dist/package.json # Build version is not the latest, this is just an artifact.
@@ -33,6 +33,8 @@ build:
     paths:
       - dist/
     expire_in: 1 day
+  only:
+    - master
 
 deploy:
   stage: deploy
@@ -44,19 +46,18 @@ deploy:
     - echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc
     - npm install -g yarn
   script:
-    - yarn install --production=false
+    - yarn install
     - yarn build
     - cp package.template.json dist/package.json
     - sed -i 's/{VERSION}/${CI_COMMIT_TAG}/' dist/package.json
     - cp readme.md dist/readme.md
     - cd dist/
-    - npm pack
+    - npm publish
   after_script:
     - npm logout
-  artifacts:
+  artifacts: # Never expire.
     paths:
       - dist/
-    expire_in: 1 day
   only:
     - tags
 

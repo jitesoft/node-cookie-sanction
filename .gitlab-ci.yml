@@ -22,7 +22,7 @@ build:
   before_script:
     - npm install -g yarn
   script:
-    - yarn install --dev
+    - yarn install --production=false
     - yarn build
     - cp package.json dist/package.json
     - cp readme.md dist/readme.md
@@ -43,7 +43,7 @@ deploy:
     - echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc
     - npm install -g yarn
   script:
-    - yarn install --dev
+    - yarn install --production=false
     - yarn build
     - cp package.template.json dist/package.json
     - sed -i 's/{VERSION}/${CI_COMMIT_TAG}/' dist/package.json

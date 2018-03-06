@@ -1,7 +1,7 @@
 {
   "name": "cookie-consent",
   "version": "1.0.0",
-  "description": "Cookie consent scripts and components.",
+  "description": "Cookie consent allowing awaiting acceptance before injecting cookie scripts.",
   "main": "index.js",
   "repository": "git@gitlab.com:jitesoft/open-source/javascript/cookie-consent.git",
   "author": {
@@ -11,7 +11,6 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.6.1",
     "eslint": "^4.18.2",
     "semistandard": "^12.0.1",

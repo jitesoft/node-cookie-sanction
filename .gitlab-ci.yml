@@ -3,6 +3,11 @@ stages:
   - build
   - deploy
 
+cache:
+  paths:
+    - dist/
+  key: ${CI_BUILD_REF_NAME}
+
 test:
   stage: test
   variables:
@@ -25,8 +30,7 @@ build:
     - yarn install --dev
     - yarn build
   cache:
-    untracked: true
-    key: cc:dist
+    key: ${CI_BUILD_REF_NAME}
     paths:
       - dist/
 
@@ -43,7 +47,7 @@ deploy vanilla:
   after_script:
     - npm logout
   cache:
-    key: cc:dist
+    key: ${CI_BUILD_REF_NAME}
     paths:
       - dist/
     policy: pull

@@ -4,7 +4,7 @@ const dist = path.resolve(__dirname, 'dist');
 const mode = process.env.NODE_ENV || 'development';
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
-let pkg = require('./package');
+const pkg = require('./package');
 delete pkg.devDependencies;
 delete pkg.dependencies;
 delete pkg.scripts;

@@ -13,7 +13,7 @@ class PackagePlugin {
     this.plugin = {
       name: 'package.json compiler'
     };
-    this.base = (basePackage instanceof String) ? JSON.parse(basePackage) : basePackage;
+    this.base = Object.assign({}, (basePackage instanceof String) ? JSON.parse(basePackage) : basePackage);
     this.replace = (replace instanceof String) ? JSON.parse(replace) : replace;
     this.output = outputFile;
   }
@@ -39,7 +39,7 @@ class PackagePlugin {
   async write () {
     log('Emitting package.json file.');
     return new Promise((resolve, reject) => {
-      fs.writeFile(this.output, JSON.stringify(this.base, null, 2), null, (e) => {
+      fs.writeFile(this.output, JSON.stringify(this.base, null, 2), {flag: 'w'}, (e) => {
         if (e) {
           return reject(e);
         }

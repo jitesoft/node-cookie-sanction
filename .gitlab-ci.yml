@@ -49,7 +49,7 @@ deploy:
     - yarn install
     - yarn build
     - cp package.template.json dist/package.json
-    - sed -i 's/{VERSION}/${CI_COMMIT_TAG}/' dist/package.json
+    - sed -i 's/{VERSION}/'"${CI_COMMIT_TAG}"'/' dist/package.json
     - cp readme.md dist/readme.md
     - cd dist/
     - npm publish

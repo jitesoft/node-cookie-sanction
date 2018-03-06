@@ -24,7 +24,8 @@ build:
   script:
     - yarn install --production=false
     - yarn build
-    - cp package.json dist/package.json
+    - cp package.template.json dist/package.json
+    - sed -i 's/{VERSION}/1.0.0/' dist/package.json # Build version is not the latest, this is just an artifact.
     - cp readme.md dist/readme.md
     - cd dist/
     - npm pack

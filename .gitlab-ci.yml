@@ -1,6 +1,7 @@
 stages:
   - test
   - build
+  - deploy
 
 test:
   stage: test
@@ -10,7 +11,7 @@ test:
   before_script:
     - npm install -g yarn
   script:
-    - yarn install
+    - yarn install --dev
     - yarn test
 
 build:
@@ -21,5 +22,32 @@ build:
   before_script:
     - npm install -g yarn
   script:
-    - yarn install
+    - yarn install --dev # Dev flag to install webpack and such for building.
     - yarn build
+  cache:
+    key: cc:dist
+    paths:
+      - dist/
+
+deploy vanilla:
+  stage: deploy
+  variables:
+    NODE_ENV: 'production'
+  image: jitesoft/node-base:latest
+  before_script:
+    "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc
+  script:
+    - cp readme.md dist/js/readme.md
+    - cd dist/js
+    - npm pack
+  after_script:
+    - npm logout
+  cache:
+    key: cc:dist
+    paths:
+      - dist/
+    policy: pull
+  artifacts:
+    paths:
+      - dist/js
+    expire_in: 1 day

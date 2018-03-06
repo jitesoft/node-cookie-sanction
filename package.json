@@ -21,7 +21,7 @@
     "babel-loader": "^7.1.4"
   },
   "scripts": {
-    "test": "semistandard",
+    "test": "semistandard src/",
     "build": "webpack",
     "example": "cd example && webpack"
   },

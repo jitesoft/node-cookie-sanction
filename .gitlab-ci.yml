@@ -36,13 +36,15 @@ deploy vanilla:
   script:
     - yarn install --dev
     - yarn build
-    - cd dist/js
+    - cp package.json dist/package.json
+    - cp readme.md dist/readme.md
+    - cd dist/
     - npm pack
   after_script:
     - npm logout
   artifacts:
     paths:
-      - dist/js
+      - dist/
     expire_in: 1 day
   only:
     - master

@@ -15,8 +15,8 @@ const defaults = {
   cookie: 'accept-cookies',
   cookieValue: 'accepted',
   hiddenClass: 'hidden',
-  acceptButton: 'div.cookie-consent > button[name="accept"]',
-  rejectButton: 'div.cookie-consent > button[name="reject"]'
+  acceptButton: 'div.cookie-consent button[name="accept"]',
+  rejectButton: 'div.cookie-consent button[name="reject"]'
 };
 
 /**
@@ -28,37 +28,47 @@ class CookieConsent {
     this.cookieHandler = new CookieHandler();
   }
 
+  hide (element) {
+    element.classList.add(this.options.hiddenClass);
+  }
+
   async active () {
     return new Promise((resolve, reject) => {
-      // Check for cookie.
-      if (this.cookieHandler.getValue(this.options.cookie) !== null) {
-        return resolve();
+      let element = document.querySelector(this.options.element);
+
+      if (!element) {
+        this.hide(element);
+        return reject(new Error('Failed to locate element to apply cookie consent code to.'));
       }
 
-      let element = document.querySelector(this.options.element);
-      if (!element || element.length === 0) {
-        return reject(new Error('Failed to locate element to apply cookie consent code to.'));
+      // Check for cookie.
+      if (this.cookieHandler.getValue(this.options.cookie) !== null) {
+        this.hide(element);
+        return resolve(true);
       }
 
       let accept = element.querySelector(this.options.acceptButton);
       let decline = element.querySelector(this.options.rejectButton);
 
-      if (!accept || accept.length === 0) {
+      if (accept === null) {
+        this.hide(element);
         return reject(new Error('Failed to locate the accept button.'));
       }
 
       accept.addEventListener('click', () => {
-        element.classList.add(this.options.hiddenClass);
         this.cookieHandler.createCookie(this.options.cookie, this.options.cookieValue);
-        resolve();
+        this.hide(element);
+        resolve(true);
       });
 
-      if (decline && decline.length > 0) {
+      if (decline !== null) {
         decline.addEventListener('click', () => {
-          reject(new Error('User rejected cookie consent.'));
+          this.hide(element);
+          return resolve(false);
         });
       }
 
+      // Hide the element.
       element.classList.remove(this.options.hiddenClass);
     });
   }

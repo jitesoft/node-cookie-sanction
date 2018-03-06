@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Test</title>
+    <script src="dist/compiled.js" type="application/javascript"></script>
+<style>
+    .hidden {
+        display: none;
+    }
+
+    button {
+        padding: 5px;
+        margin: 5px;
+    }
+
+    .text {
+        display: block;
+        text-align: center;
+        padding-top: 5px;
+        font-size: larger;
+    }
+</style>
+
+</head>
+<body>
+    <div class="cookie-consent" style="background-color: gray; width: 50%; height: 120px;">
+        <span class="text">This is a nasty consent dialog!</span>
+        <div style="display: flex; justify-content: center;">
+            <button name="accept">accept</button>
+            <button name="reject">don't accept</button>
+        </div>
+    </div>
+
+    <div class="" id="state" style="background-color: aqua; width: 40%; height: 30px;">
+        The consent dialog is active!
+    </div>
+</body>

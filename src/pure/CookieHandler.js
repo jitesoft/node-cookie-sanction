@@ -30,7 +30,7 @@ export default class CookieHandler {
    * @param {string|bool|number} value
    */
   createCookie (name, value) {
-    document.cookie = `${name}:${value}`;
+    document.cookie = `${name}=${value}`;
   }
 
   /**

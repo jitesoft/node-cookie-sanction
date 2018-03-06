@@ -25,10 +25,9 @@ build:
     - yarn install --dev
     - yarn build
   cache:
+    untracked: true
     key: cc:dist
     paths:
-      - dist/
-      - dist/
       - dist/
 
 deploy vanilla:

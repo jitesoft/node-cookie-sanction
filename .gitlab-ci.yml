@@ -27,7 +27,9 @@ build:
   cache:
     key: cc:dist
     paths:
-      - dist/
+      - dist/js
+      - dist/vue
+      - dist/react
 
 deploy vanilla:
   stage: deploy
@@ -45,7 +47,7 @@ deploy vanilla:
   cache:
     key: cc:dist
     paths:
-      - dist/
+      - dist/js
     policy: pull
   artifacts:
     paths:

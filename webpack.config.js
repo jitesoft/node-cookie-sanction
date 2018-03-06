@@ -5,6 +5,7 @@ const mode = process.env.NODE_ENV || 'development';
 
 let pkg = require('./package');
 delete pkg.devDependencies;
+delete pkg.dependencies;
 delete pkg.scripts;
 delete pkg.eslintConfig;
 delete pkg.semistandard;

@@ -2,6 +2,7 @@ const PackagePlugin = require('./src/PackagePlugin');
 const path = require('path');
 const dist = path.resolve(__dirname, 'dist');
 const mode = process.env.NODE_ENV || 'development';
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 let pkg = require('./package');
 delete pkg.devDependencies;
@@ -21,7 +22,15 @@ const js = {
   plugins: [
     new PackagePlugin(pkg, dist + '/js/package.json', {
       description: 'Pure JavaScript cookie consent code.'
-    })
+    }),
+    new CopyWebpackPlugin([{
+      from: './readme.md',
+      to: './readme.md',
+      transform (content) {
+        content = content.toString();
+        return content.replace(content.substring(content.indexOf('## Vue')), '');
+      }
+    }])
   ]
 };
 
@@ -37,7 +46,18 @@ const vue = {
     new PackagePlugin(pkg, dist + '/vue/package.json', {
       name: 'cookie-consent-vue',
       description: 'Vue component for easy implementation of cookie consent.'
-    })
+    }),
+    new CopyWebpackPlugin([
+      {
+        from: './readme.md',
+        to: './readme.md',
+        transform (content) {
+          content = content.toString();
+          content = content.replace(content.substring(content.indexOf('## Vanilla js'), content.indexOf('## Vue')), '');
+          return content.replace(content.substring(content.indexOf('## React')), '');
+        }
+      }
+    ])
   ]
 };
 
@@ -53,7 +73,15 @@ const react = {
     new PackagePlugin(pkg, dist + '/react/package.json', {
       name: 'cookie-consent-react',
       description: 'React component for easy implementation of cookie consent.'
-    })
+    }),
+    new CopyWebpackPlugin([{
+      from: './readme.md',
+      to: './readme.md',
+      transform (content) {
+        content = content.toString();
+        return content.replace(content.substring(content.indexOf('## Vanilla js'), content.indexOf('## React')), '');
+      }
+    }])
   ]
 };
 

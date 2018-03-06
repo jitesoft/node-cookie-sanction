@@ -22,14 +22,14 @@ build:
   before_script:
     - npm install -g yarn
   script:
-    - yarn install --dev # Dev flag to install webpack and such for building.
+    - yarn install --dev
     - yarn build
   cache:
     key: cc:dist
     paths:
-      - dist/js
-      - dist/vue
-      - dist/react
+      - dist/
+      - dist/
+      - dist/
 
 deploy vanilla:
   stage: deploy
@@ -39,17 +39,18 @@ deploy vanilla:
   before_script:
     - echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc
   script:
-    - cp readme.md dist/js/readme.md
-    - cd dist/js
+    - cd dist
     - npm pack
   after_script:
     - npm logout
   cache:
     key: cc:dist
     paths:
-      - dist/js
+      - dist/
     policy: pull
   artifacts:
     paths:
-      - dist/js
+      - dist/
     expire_in: 1 day
+  only:
+    - master

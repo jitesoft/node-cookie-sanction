@@ -1,4 +1,5 @@
 const fs = require('fs');
+const mkdirp = require('mkdirp');
 const log = (msg) => {
   console.log(`[package.json compiler] ${msg}`);
 };
@@ -37,6 +38,16 @@ class PackagePlugin {
    * @return {Promise<any>}
    */
   async write () {
+    log('Creating directory structure.');
+    await new Promise((resolve, reject) => {
+      mkdirp(this.output.replace('package.json', ''), (e) => {
+        if (e) {
+          reject(e);
+        }
+        resolve();
+      });
+    });
+
     log('Emitting package.json file.');
     return new Promise((resolve, reject) => {
       fs.writeFile(this.output, JSON.stringify(this.base, null, 2), {flag: 'w'}, (e) => {

@@ -20,9 +20,6 @@ const js = {
     path: dist + '/js'
   },
   plugins: [
-    new PackagePlugin(pkg, dist + '/js/package.json', {
-      description: 'Pure JavaScript cookie consent code.'
-    }),
     new CopyWebpackPlugin([{
       from: './readme.md',
       to: './readme.md',
@@ -30,7 +27,10 @@ const js = {
         content = content.toString();
         return content.replace(content.substring(content.indexOf('## Vue')), '');
       }
-    }])
+    }]),
+    new PackagePlugin(pkg, dist + '/js/package.json', {
+      description: 'Pure JavaScript cookie consent code.'
+    })
   ]
 };
 
@@ -43,10 +43,6 @@ const vue = {
     path: dist + '/vue'
   },
   plugins: [
-    new PackagePlugin(pkg, dist + '/vue/package.json', {
-      name: 'cookie-consent-vue',
-      description: 'Vue component for easy implementation of cookie consent.'
-    }),
     new CopyWebpackPlugin([
       {
         from: './readme.md',
@@ -57,7 +53,11 @@ const vue = {
           return content.replace(content.substring(content.indexOf('## React')), '');
         }
       }
-    ])
+    ]),
+    new PackagePlugin(pkg, dist + '/vue/package.json', {
+      name: 'cookie-consent-vue',
+      description: 'Vue component for easy implementation of cookie consent.'
+    })
   ]
 };
 
@@ -70,10 +70,6 @@ const react = {
     path: dist + '/react'
   },
   plugins: [
-    new PackagePlugin(pkg, dist + '/react/package.json', {
-      name: 'cookie-consent-react',
-      description: 'React component for easy implementation of cookie consent.'
-    }),
     new CopyWebpackPlugin([{
       from: './readme.md',
       to: './readme.md',
@@ -81,8 +77,11 @@ const react = {
         content = content.toString();
         return content.replace(content.substring(content.indexOf('## Vanilla js'), content.indexOf('## React')), '');
       }
-    }])
-  ]
+    }]),
+    new PackagePlugin(pkg, dist + '/react/package.json', {
+      name: 'cookie-consent-react',
+      description: 'React component for easy implementation of cookie consent.'
+    }) ]
 };
 
 module.exports = [

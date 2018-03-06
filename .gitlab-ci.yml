@@ -3,11 +3,6 @@ stages:
   - build
   - deploy
 
-cache:
-  paths:
-    - dist/
-  key: ${CI_BUILD_REF_NAME}
-
 test:
   stage: test
   variables:
@@ -29,10 +24,6 @@ build:
   script:
     - yarn install --dev
     - yarn build
-  cache:
-    key: ${CI_BUILD_REF_NAME}
-    paths:
-      - dist/
 
 deploy vanilla:
   stage: deploy
@@ -41,16 +32,14 @@ deploy vanilla:
   image: jitesoft/node-base:latest
   before_script:
     - echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc
+    - npm install -g yarn
   script:
+    - yarn install --dev
+    - yarn build
     - cd dist
     - npm pack
   after_script:
     - npm logout
-  cache:
-    key: ${CI_BUILD_REF_NAME}
-    paths:
-      - dist/
-    policy: pull
   artifacts:
     paths:
       - dist/

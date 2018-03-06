@@ -24,19 +24,29 @@ build:
   script:
     - yarn install --dev
     - yarn build
+    - cp package.json dist/package.json
+    - cp readme.md dist/readme.md
+    - cd dist/
+    - npm pack
+  artifacts:
+    paths:
+      - dist/
+    expire_in: 1 day
 
-deploy vanilla:
+deploy:
   stage: deploy
   variables:
     NODE_ENV: 'production'
   image: jitesoft/node-base:latest
   before_script:
+    - apk add --no-cache sed
     - echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc
     - npm install -g yarn
   script:
     - yarn install --dev
     - yarn build
-    - cp package.json dist/package.json
+    - cp package.template.json dist/package.json
+    - sed -i 's/{VERSION}/${CI_COMMIT_TAG}/' dist/package.json
     - cp readme.md dist/readme.md
     - cd dist/
     - npm pack
@@ -47,4 +57,5 @@ deploy vanilla:
       - dist/
     expire_in: 1 day
   only:
-    - master
+    - tags
+

@@ -13,21 +13,6 @@ const config = {
     library: 'CookieConsent',
     path: dist,
     umdNamedDefine: true
-  },
-  module: {
-    rules: [{
-      test: /\.js$/,
-      loader: 'babel-loader',
-      options: {
-        presets: [ [
-          'env', {
-            targets: {
-              browsers: ['since 2016']
-            }
-          }]
-        ]
-      }
-    }]
   }
 };
 

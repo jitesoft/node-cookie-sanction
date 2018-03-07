@@ -1,4 +1,4 @@
-import CookieConsent from 'cookie-sanction';
+import { CookieConsent } from 'cookie-sanction';
 
 document.addEventListener('DOMContentLoaded', () => {
   const consent = new CookieConsent();

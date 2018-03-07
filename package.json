@@ -21,8 +21,7 @@
   },
   "scripts": {
     "test": "semistandard src/",
-    "build": "webpack",
-    "example": "cd example && webpack"
+    "build": "webpack"
   },
   "eslintConfig": {
     "parserOptions": {
@@ -31,7 +30,7 @@
     },
     "env": {
       "browser": true,
-      "node": true
+      "node": false
     },
     "extends": "semistandard"
   },

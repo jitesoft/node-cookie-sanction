@@ -1,6 +1,6 @@
 module.exports = {
   mode: 'development',
-  entry: ['./index.js'],
+  entry: ['babel-polyfill', './index.js'],
   target: 'web',
   output: {
     filename: './compiled.js'

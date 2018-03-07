@@ -1,5 +1,5 @@
 {
-    "name": "cookie-consent",
+    "name": "cookie-sanction",
     "version": "{VERSION}",
     "description": "Cookie consent script allowing awaiting user to accept or decline before optionally injecting cookie scripts.",
     "main": "index.js",

@@ -1,7 +1,7 @@
 import CookieConsent from './pure/CookieConsent';
 
 export {
-  CookieConsent,
+  CookieConsent
 };
 
 export default CookieConsent;

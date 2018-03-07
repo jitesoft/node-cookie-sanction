@@ -1,4 +1,4 @@
-# Cookie Consent
+# Cookie Sanction / Cookie Consent
 
 A JavaScript module for front-end cookie consent functionality which allows for loading scripts after consent is 
 accepted.  
@@ -11,15 +11,15 @@ The code is intended (and built) to be used with webpack, but feel free to test 
 Install the module from any of the standard channels:
 
 ```text
-yarn add cookie-consent
-npm install cookie-consent --save
-bower install cookie-consent --save
+yarn add cookie-sanction
+npm install cookie-sanction --save
+bower install cookie-sanction --save
 ```
 
 Include it in your own JavaScript as a module
 
 ```javascript
-import { CookieConsent } from 'cookie-consent';
+import { CookieConsent } from 'cookie-sanction';
 
 const consent = new CookieConsent({
   /* options */

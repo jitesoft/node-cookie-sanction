@@ -55,7 +55,7 @@ deploy:
     - cd dist/
     - npm publish
   after_script:
-    - npm logout
+    - rm -f ~/.npmrc
   artifacts: # Never expire.
     paths:
       - dist/

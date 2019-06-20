@@ -9,9 +9,9 @@ test:
     NODE_ENV: 'development'
   image: jitesoft/node-base:latest
   before_script:
-    - npm ci
+    - npx yarn install
   script:
-    - npm run test
+    - npx yarn test
 
 build:
   stage: build
@@ -19,9 +19,9 @@ build:
     NODE_ENV: 'production'
   image: jitesoft/node-base:latest
   before_script:
-    - npm ci
+    - npx yarn install
   script:
-    - npm run build
+    - npx yarn build
     - cp package.template.json dist/package.json
     - sed -i 's/{VERSION}/1.0.0/' dist/package.json # Build version is not the latest, this is just an artifact.
     - cp readme.md dist/readme.md

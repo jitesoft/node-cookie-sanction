@@ -16,7 +16,7 @@ export default class CookieHandler {
    * @return {null|string|bool|number}
    */
   getValue (name) {
-    let parsed = this._parseCookies();
+    const parsed = this._parseCookies();
     if (parsed[name] !== undefined) {
       return parsed[name];
     }
@@ -39,8 +39,8 @@ export default class CookieHandler {
    * @return {{string: name, mixed: value}}
    */
   _parseCookies () {
-    let cookies = document.cookie.split(';');
-    let fixed = {};
+    const cookies = document.cookie.split(';');
+    const fixed = {};
     let spl = [];
 
     for (let i = 0; i < cookies.length; i++) {

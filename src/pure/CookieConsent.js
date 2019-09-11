@@ -34,7 +34,7 @@ class CookieConsent {
 
   async active () {
     return new Promise((resolve, reject) => {
-      let element = document.querySelector(this.options.element);
+      const element = document.querySelector(this.options.element);
 
       if (!element) {
         this.hide(element);
@@ -47,8 +47,8 @@ class CookieConsent {
         return resolve(true);
       }
 
-      let accept = element.querySelector(this.options.acceptButton);
-      let decline = element.querySelector(this.options.rejectButton);
+      const accept = element.querySelector(this.options.acceptButton);
+      const decline = element.querySelector(this.options.rejectButton);
 
       if (accept === null) {
         this.hide(element);

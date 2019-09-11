@@ -1,0 +1,9 @@
+{
+  "presets": [
+    [
+      "@jitesoft/main", {
+        "mode": "web"
+      }
+    ]
+  ]
+}

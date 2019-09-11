@@ -1,8 +1,9 @@
+/* eslint-disable */
 const path = require('path');
 const dist = path.resolve(__dirname, 'dist');
 const mode = process.env.NODE_ENV || 'development';
 
-const config = {
+module.exports = {
   mode: mode,
   entry: {
     index: './src/index.js'
@@ -15,5 +16,3 @@ const config = {
     umdNamedDefine: true
   }
 };
-
-module.exports = config;

@@ -2,7 +2,8 @@
   "presets": [
     [
       "@jitesoft/main", {
-        "mode": "web"
+        "targets": "web",
+        "useBuiltIns": "entry"
       }
     ]
   ]

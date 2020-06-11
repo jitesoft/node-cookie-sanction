@@ -24,7 +24,7 @@ const defaults = {
  */
 class CookieConsent {
   constructor (options) {
-    this.options = Object.assign(defaults, options);
+    this.options = Object.assign({}, defaults, options);
     this.cookieHandler = new CookieHandler();
   }
 
@@ -37,7 +37,6 @@ class CookieConsent {
       const element = document.querySelector(this.options.element);
 
       if (!element) {
-        this.hide(element);
         return reject(new Error('Failed to locate element to apply cookie consent code to.'));
       }
 

@@ -35,6 +35,12 @@
   "scripts": {
     "test": "eslint src/ && npm audit",
     "build:prod": "cross-env NODE_ENV=production webpack -p",
-    "build:dev": "cross-env NODE_ENV=development webpack"
+    "build:dev": "cross-env NODE_ENV=development webpack",
+    "snyk-protect": "snyk protect",
+    "prepare": "yarn run snyk-protect"
+  },
+  "snyk": true,
+  "dependencies": {
+    "snyk": "^1.339.0"
   }
 }
